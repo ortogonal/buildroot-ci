@@ -1,0 +1,20 @@
+<buildroot-ci>
+    <remotes>
+        <remote name="origin" url="https://git.busybox.net/buildroot" />
+        <remote name="gh" url="https://github.com/ortogonal/buildroot.git" />
+    </remotes>
+
+    <builds>
+        <build remote="origin" branch="master">
+            <configs>
+                <config name="freescale_imx6qsabresd_defconfig" />
+            </configs>
+        </build>
+        <build remote="gh" branch="imx8_v4_master">
+            <configs>
+                <config name="freescale_imx8mqevk_defconfig" />
+                <config name="freescale_imx6qsabresd_defconfig" />
+            </configs>
+        </build>
+    </builds>
+</buildroot-ci>
