@@ -56,16 +56,12 @@ def createBuildFolder(buildDir):
 
 def configureBuild(path, buildPath, defconfig):
     cmd = ["make",  "O=" + buildPath,  "-C", path, defconfig]
-    print cmd
-    print "Build path: " + buildPath + ", defconfig: " + defconfig + ", path:" + path
     p = subprocess.Popen(cmd, cwd=buildPath)
     p.communicate()
     return True
 
 def compileBuild(path):
     cmd = ["make"]
-    print cmd
-    print "Build path: " + buildPath + ", defconfig: " + defconfig + ", path:" + path
     p = subprocess.Popen(cmd, cwd=buildPath)
     p.communicate()
     return True
