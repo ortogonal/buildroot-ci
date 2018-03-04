@@ -62,7 +62,7 @@ def configureBuild(path, buildPath, defconfig):
 
 def compileBuild(path):
     cmd = ["make"]
-    p = subprocess.Popen(cmd, cwd=buildPath)
+    p = subprocess.Popen(cmd, cwd=path)
     p.communicate()
     return True
 
