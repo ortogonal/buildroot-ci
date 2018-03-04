@@ -153,9 +153,9 @@ for builds in e.findall('builds'):
                     if not configureBuild(repoPath, bp, config):
                         print "ERROR: configure failed for " + buildPath + "," + remote + "," + branch
                         continue
-                    #if not compileBuild(bp):
-                    #    print "ERROR: build failed for " + buildPath + "," + remote + "," + branch
-                    #    continue
+                    if not compileBuild(bp):
+                        print "ERROR: build failed for " + buildPath + "," + remote + "," + branch
+                        continue
 
                     # TODO: Figure out which test to run
                     #print "    run tests (TODO, TODO, TODO)"
