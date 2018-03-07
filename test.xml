@@ -10,10 +10,15 @@
                 <config name="freescale_imx6qsabresd_defconfig" />
             </configs>
         </build>
-        <build remote="gh" branch="imx8_v4_master">
+        <build remote="gh" branch="imx8_v5_master">
             <configs>
                 <config name="freescale_imx8mqevk_defconfig" />
                 <config name="freescale_imx6qsabresd_defconfig" />
+            </configs>
+        </build>
+        <build remote="gh" branch="master_gh">
+            <configs>
+                <config name="freescale_imx6qsabresd_qt5_wayland_defconfig" />
             </configs>
         </build>
     </builds>
