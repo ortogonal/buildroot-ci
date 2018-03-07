@@ -111,9 +111,6 @@ for remotes in e.findall('remotes'):
             if not newRemote.exists():
                 print "Remote " + name + " does not exists, exiting"
                 exit(1)
-        fetchRemote = repo.remotes[name];
-        for fetch_info in fetchRemote.fetch(progress=MyProgressPrinter()):
-            print("Updated %s to %s" % (fetch_info.ref, fetch_info.commit))
 
 
 errors = False
@@ -135,6 +132,11 @@ for builds in e.findall('builds'):
                     # then remove the renamed branch
                     if branch + "_nn" in repo.heads:
                         repo.heads[branch].rename(branch + "_nn", force=True)
+
+                    # Fetch
+                    fetchRemote = repo.remotes[name];
+                    for fetch_info in fetchRemote.fetch(progress=MyProgressPrinter()):
+                        print("Updated %s to %s" % (fetch_info.ref, fetch_info.commit))
 
                     # Checkout correct branch
                     repo.create_head(branch, repo.remotes[remote].refs[branch])  # create local branch "master" from remote "master"
