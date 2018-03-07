@@ -7,6 +7,7 @@ import sys
 import subprocess
 from git import Repo
 from git import RemoteProgress
+from git import Head
 import xml.etree.ElementTree
 
 class MyProgressPrinter(RemoteProgress):
@@ -86,7 +87,6 @@ buildPath = os.path.abspath("builds")
 #    for ref in refs:
 #        print ref.name;
 
-
 e = xml.etree.ElementTree.parse('test.xml').getroot()
 
 # Initialize (if needed) repo
@@ -131,12 +131,20 @@ for builds in e.findall('builds'):
                     config = c.attrib['name'];
                     print "    config: " + config;
 
+                    # If the branch exists, rename it and the checkout the new one (if forced)
+                    # then remove the renamed branch
+                    if branch + "_nn" in repo.heads:
+                        repo.heads[branch].rename(branch + "_nn", force=True)
+
                     # Checkout correct branch
                     repo.create_head(branch, repo.remotes[remote].refs[branch])  # create local branch "master" from remote "master"
                     repo.heads[branch].set_tracking_branch(repo.remotes[remote].refs[branch])  # set local "master" to track remote "master
                     repo.heads[branch].checkout()
-
                     repo.remotes[remote].pull()
+
+                    # Delete the renamed branch
+                    if branch + "_nn" in repo.heads:
+                        Head.delete(repo, branch + "_nn", fource=True)
 
                     # Run build
                     bp = buildPath + "/" + remote + "/" + branch + "/" + config
