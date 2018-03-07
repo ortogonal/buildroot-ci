@@ -130,7 +130,7 @@ for builds in e.findall('builds'):
 
                     # If the branch exists, rename it and the checkout the new one (if forced)
                     # then remove the renamed branch
-                    if branch + "_nn" in repo.heads:
+                    if branch in repo.heads:
                         repo.heads[branch].rename(branch + "_nn", force=True)
 
                     # Fetch
